@@ -3,3 +3,33 @@
   justify-content: space-between; /* Alinear los botones a los extremos */
   align-items: center; /* Centrar verticalmente los botones */
 }
+
+.close {
+  color: white; /* Color del texto */
+  font-size: 10px; /* Tamaño de fuente */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 250px; /* Bordes redondeados */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  transition: background-color 0.3s; /* Efecto de transición */
+}
+
+/* Agregar un efecto de hover para mejorar la interacción */
+.close:hover {
+  background-color: crimson; /* Cambiar color de fondo al pasar por encima */
+}
+
+/* Nueva clase para aplicar estilos al botón "Cerrar" */
+.btn-custom-close {
+  color: white; /* Color del texto */
+  background-color: crimson; /* Color de fondo */
+  border: none; /* Sin borde */
+  border-radius: 250px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  transition: background-color 0.3s; /* Efecto de transición */
+}
+
+/* Efecto de hover para el botón "Cerrar" */
+.btn-custom-close:hover {
+  background-color: darkred; /* Cambiar a un rojo más oscuro al pasar por encima */
+}
