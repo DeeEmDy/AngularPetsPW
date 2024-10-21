@@ -13,4 +13,9 @@ export class UserService {
   public getUsers(): Observable<User[]>{ //Método que retorna un Observable es una promesa que brinda una respuesta asincrónica.
     return this.http.get<User[]>(this.base_url+'user');
   }
+
+  //Método para crear un usuario.
+  public createUser(user: User): Observable<User>{
+    return this.http.post<User>(this.base_url+'user', user);
+  }
 }
