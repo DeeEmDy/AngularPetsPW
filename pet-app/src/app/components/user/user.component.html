@@ -25,11 +25,16 @@
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
-            <tbody *ngFor="let user of users | async">
+            <thead>
               <tr>
-                <th scope="row">
-                  {{user.firstName}} {{user.lastName}}
-                </th>
+                <th scope="col">Nombre Completo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of (users | async)">
+                <td>
+                  {{ user.firstName }} {{ user.lastName }}
+                </td>
               </tr>
             </tbody>
           </table>

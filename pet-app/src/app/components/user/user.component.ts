@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../user';
 import { CommonModule } from '@angular/common';
@@ -14,12 +14,12 @@ import { UserCreateModalComponent } from '../user-create-modal/user-create-modal
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
   public users: Observable<User[]> | undefined;
   public userForm: FormGroup;
   public successMessage: string | null = null;
   public errorMessage: string | null = null;
-  public showModal: boolean = false; //Para controlar la visibilidad del modal.
+  public showModal: boolean = false; // Para controlar la visibilidad del modal.
 
   constructor(private readonly userService: UserService, private readonly fb: FormBuilder) {
     this.userForm = this.fb.group({
