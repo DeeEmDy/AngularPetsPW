@@ -18,18 +18,44 @@ export class UserCreateModalComponent {
 
   constructor(private readonly fb: FormBuilder) {
     this.userForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      age: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+      firstName: ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(18),
+        Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") // Solo letras y espacios
+      ]],
+      lastName: ['', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(15),
+        Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$") // Solo letras y espacios
+      ]],
+      age: ['', [
+        Validators.required,
+        Validators.min(1), // Edad mínima
+        Validators.max(99), // Edad máxima
+        Validators.pattern("^[0-9]{1,2}$") // Solo números de 1 a 2 dígitos
+      ]]
     });
   }
 
   onSubmit() {
     if (this.userForm.valid) {
+      // Trim whitespace from the input fields
+      const trimmedFirstName = this.userForm.value.firstName.trim();
+      const trimmedLastName = this.userForm.value.lastName.trim();
+
+      // Check for spaces at the end of the inputs
+      if (trimmedFirstName !== this.userForm.value.firstName || trimmedLastName !== this.userForm.value.lastName) {
+        // Show an error message or handle accordingly
+        alert('No se permiten espacios al final de los campos.');
+        return; // Exit the function early
+      }
+
       const newUser: User = {
-        id: 0, //El id se asigna en el backend con el autoincrement.
-        firstName: this.userForm.value.firstName,
-        lastName: this.userForm.value.lastName,
+        id: 0, // El id se asigna en el backend con el autoincrement.
+        firstName: trimmedFirstName,
+        lastName: trimmedLastName,
         age: this.userForm.value.age,
         createdAt: new Date().toISOString()
       };

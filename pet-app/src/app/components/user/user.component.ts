@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserCreateModalComponent } from '../user-create-modal/user-create-modal.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user',
@@ -50,10 +51,26 @@ export class UserComponent implements OnInit {
         this.errorMessage = null;
         this.users = this.userService.getUsers();
         this.closeModal();
+
+        // Mostrar alerta de éxito
+        Swal.fire({
+          icon: 'success',
+          title: 'Usuario creado',
+          text: 'El usuario se ha creado con éxito.',
+          confirmButtonText: 'Aceptar'
+        });
       },
       error: (error) => {
         this.errorMessage = 'Hubo un error al crear el usuario';
         this.successMessage = null;
+
+        // Mostrar alerta de error
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al crear usuario',
+          text: 'Hubo un error al crear el usuario. Inténtalo de nuevo.',
+          confirmButtonText: 'Aceptar'
+        });
       }
     });
   }

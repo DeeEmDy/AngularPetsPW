@@ -12,14 +12,32 @@
           <div class="form-group">
             <label for="firstName">Nombre</label>
             <input id="firstName" formControlName="firstName" class="form-control" required>
+            <div *ngIf="userForm.get('firstName')?.errors && (userForm.get('firstName')?.touched || userForm.get('firstName')?.dirty)">
+              <div *ngIf="userForm.get('firstName')?.errors?.['required']">El nombre es requerido.</div>
+              <div *ngIf="userForm.get('firstName')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</div>
+              <div *ngIf="userForm.get('firstName')?.errors?.['maxlength']">El nombre no puede exceder los 18 caracteres.</div>
+              <div *ngIf="userForm.get('firstName')?.errors?.['pattern']">El nombre solo puede contener letras y espacios.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="lastName">Apellido</label>
             <input id="lastName" formControlName="lastName" class="form-control" required>
+            <div *ngIf="userForm.get('lastName')?.errors && (userForm.get('lastName')?.touched || userForm.get('lastName')?.dirty)">
+              <div *ngIf="userForm.get('lastName')?.errors?.['required']">El apellido es requerido.</div>
+              <div *ngIf="userForm.get('lastName')?.errors?.['minlength']">El apellido debe tener al menos 5 caracteres.</div>
+              <div *ngIf="userForm.get('lastName')?.errors?.['maxlength']">El apellido no puede exceder los 15 caracteres.</div>
+              <div *ngIf="userForm.get('lastName')?.errors?.['pattern']">El apellido solo puede contener letras y espacios.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="age">Edad</label>
             <input id="age" formControlName="age" type="number" class="form-control" required>
+            <div *ngIf="userForm.get('age')?.errors && (userForm.get('age')?.touched || userForm.get('age')?.dirty)">
+              <div *ngIf="userForm.get('age')?.errors?.['required']">La edad es requerida.</div>
+              <div *ngIf="userForm.get('age')?.errors?.['min']">La edad mínima es 1.</div>
+              <div *ngIf="userForm.get('age')?.errors?.['max']">La edad no puede exceder 99.</div>
+              <div *ngIf="userForm.get('age')?.errors?.['pattern']">La edad solo puede ser un número de 1 o 2 dígitos.</div>
+            </div>
           </div>
         </form>
       </div>
@@ -28,5 +46,5 @@
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Crear</button>
       </div>
     </div>
-  </dialog> <!-- Cambié de <div> a <dialog> aquí -->
+  </dialog>
 </div>
