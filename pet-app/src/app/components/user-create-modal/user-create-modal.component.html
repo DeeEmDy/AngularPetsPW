@@ -21,7 +21,6 @@
             <label for="age">Edad</label>
             <input id="age" formControlName="age" type="number" class="form-control" required>
           </div>
-          <button type="submit" class="btn btn-primary">Crear</button>
         </form>
       </div>
       <div class="modal-footer d-flex justify-content-between">
@@ -29,5 +28,5 @@
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Crear</button>
       </div>
     </div>
-  </div>
+  </dialog> <!-- Cambié de <div> a <dialog> aquí -->
 </div>
