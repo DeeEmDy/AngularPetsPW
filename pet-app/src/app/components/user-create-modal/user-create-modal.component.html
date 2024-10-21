@@ -1,5 +1,5 @@
-<div class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+  <dialog class="modal-dialog" open>
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Crear Usuario</h5>
@@ -21,10 +21,11 @@
             <label for="age">Edad</label>
             <input id="age" formControlName="age" type="number" class="form-control" required>
           </div>
+          <button type="submit" class="btn btn-primary">Crear</button>
         </form>
       </div>
       <div class="modal-footer d-flex justify-content-between">
-        <button type="button" class="btn btn-custom-close" (click)="closeModal()">Cerrar</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Crear</button>
       </div>
     </div>
