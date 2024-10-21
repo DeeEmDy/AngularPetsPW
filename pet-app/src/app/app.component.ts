@@ -18,11 +18,13 @@ export class AppComponent {
 
   // Método para abrir el modal
   openModal() {
+    console.log('Abriendo el modal desde app.component.ts');
     this.showModal = true;
   }
 
   // Método para cerrar el modal
   closeModal() {
+    console.log('Cerrando el modal desde app.component.ts');
     this.showModal = false;
   }
 }

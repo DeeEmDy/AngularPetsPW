@@ -46,4 +46,8 @@
 </div>
 
 <!-- Modal para crear usuario -->
-<app-user-create-modal *ngIf="showModal" (close)="closeModal()"></app-user-create-modal>
+<app-user-create-modal
+  *ngIf="showModal"
+  (modalClose)="closeModal()"
+  (userCreated)="createUser($event)">
+</app-user-create-modal>

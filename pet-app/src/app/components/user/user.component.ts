@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
   public userForm: FormGroup;
   public successMessage: string | null = null;
   public errorMessage: string | null = null;
-  public showModal: boolean = false; // Para controlar la visibilidad del modal.
+  public showModal: boolean = false;
 
   constructor(private readonly userService: UserService, private readonly fb: FormBuilder) {
     this.userForm = this.fb.group({
@@ -31,42 +31,30 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.userService.getUsers();
-    console.log(this.users);
   }
 
-  createUser(): void {
-    if (this.userForm.valid) {
-      const user: User = {
-        id: 0,
-        firstName: this.userForm.value.firstName,
-        lastName: this.userForm.value.lastName,
-        age: this.userForm.value.age,
-        createdAt: new Date().toISOString(),
-      };
-
-      this.userService.createUser(user).subscribe({
-        next: (createdUser) => {
-          this.successMessage = 'Usuario creado con éxito';
-          this.errorMessage = null;
-          this.userForm.reset();
-          this.users = this.userService.getUsers();
-          this.closeModal(); // Cerrar el modal después de la creación
-        },
-        error: (error) => {
-          this.errorMessage = 'Hubo un error al crear el usuario';
-          this.successMessage = null;
-        }
-      });
-    }
-  }
-
-  // Método para abrir el modal
   openModal(): void {
+    console.log('Abriendo modal desde user.component.ts');
     this.showModal = true;
   }
 
-  // Método para cerrar el modal
   closeModal(): void {
+    console.log('Cerrando modal desde user.component.ts');
     this.showModal = false;
+  }
+
+  createUser(user: User): void {
+    this.userService.createUser(user).subscribe({
+      next: (createdUser) => {
+        this.successMessage = 'Usuario creado con éxito';
+        this.errorMessage = null;
+        this.users = this.userService.getUsers();
+        this.closeModal();
+      },
+      error: (error) => {
+        this.errorMessage = 'Hubo un error al crear el usuario';
+        this.successMessage = null;
+      }
+    });
   }
 }
