@@ -15,6 +15,7 @@ export class UserCreateModalComponent {
 
   @Output() modalClose = new EventEmitter<void>();
   @Output() userCreated = new EventEmitter<User>();
+  @Output() errorOccurred = new EventEmitter<string>(); // Emisor para errores
 
   constructor(private readonly fb: FormBuilder) {
     this.userForm = this.fb.group({
@@ -41,15 +42,12 @@ export class UserCreateModalComponent {
 
   onSubmit() {
     if (this.userForm.valid) {
-      // Trim whitespace from the input fields
       const trimmedFirstName = this.userForm.value.firstName.trim();
       const trimmedLastName = this.userForm.value.lastName.trim();
 
-      // Check for spaces at the end of the inputs
       if (trimmedFirstName !== this.userForm.value.firstName || trimmedLastName !== this.userForm.value.lastName) {
-        // Show an error message or handle accordingly
-        alert('No se permiten espacios al final de los campos.');
-        return; // Exit the function early
+        this.errorOccurred.emit('No se permiten espacios al final de los campos.');
+        return; // Salir de la función
       }
 
       const newUser: User = {
@@ -61,6 +59,8 @@ export class UserCreateModalComponent {
       };
       this.userCreated.emit(newUser);
       this.userForm.reset();
+    } else {
+      this.errorOccurred.emit('Por favor, completa el formulario correctamente.'); // Emitir mensaje de error si el formulario no es válido
     }
   }
 

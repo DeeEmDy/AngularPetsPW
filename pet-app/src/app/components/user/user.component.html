@@ -49,5 +49,5 @@
 <app-user-create-modal
   *ngIf="showModal"
   (modalClose)="closeModal()"
-  (userCreated)="createUser($event)">
-</app-user-create-modal>
+  (userCreated)="createUser($event)"
+  (errorOccurred)="handleError($event)"></app-user-create-modal>

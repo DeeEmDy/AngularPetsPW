@@ -52,7 +52,6 @@ export class UserComponent implements OnInit {
         this.users = this.userService.getUsers();
         this.closeModal();
 
-        // Mostrar alerta de éxito
         Swal.fire({
           icon: 'success',
           title: 'Usuario creado',
@@ -64,14 +63,30 @@ export class UserComponent implements OnInit {
         this.errorMessage = 'Hubo un error al crear el usuario';
         this.successMessage = null;
 
-        // Mostrar alerta de error
         Swal.fire({
           icon: 'error',
           title: 'Error al crear usuario',
           text: 'Hubo un error al crear el usuario. Inténtalo de nuevo.',
-          confirmButtonText: 'Aceptar'
+          confirmButtonText: 'Aceptar',
+          timer: 5000, // Tiempo en milisegundos antes de cerrar automáticamente
+          timerProgressBar: true,
+          willClose: () => {
+            this.errorMessage = null; // Limpiar el mensaje de error después de cerrar
+          }
         });
       }
+    });
+  }
+
+  // Manejo de errores desde el modal
+  handleError(errorMessage: string): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: errorMessage,
+      confirmButtonText: 'Aceptar',
+      timer: 5000, // Tiempo en milisegundos antes de cerrar automáticamente
+      timerProgressBar: true,
     });
   }
 }
