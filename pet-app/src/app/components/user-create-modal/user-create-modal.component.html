@@ -1,4 +1,4 @@
-<dialog class="modal fade show" open>
+<div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
   <dialog class="modal-dialog" open>
     <div class="modal-content">
       <div class="modal-header">
@@ -21,11 +21,11 @@
             <label for="age">Edad</label>
             <input id="age" formControlName="age" type="number" class="form-control" required>
           </div>
-          <button type="submit" class="btn btn-primary">Crear</button>
         </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Crear</button>
       </div>
     </div>
   </dialog>
