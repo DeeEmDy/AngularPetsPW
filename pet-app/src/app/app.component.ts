@@ -3,14 +3,26 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { UserCreateModalComponent } from './components/user-create-modal/user-create-modal.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, SidebarComponent, NavbarComponent, FooterComponent, UserCreateModalComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'pet-app';
+  showModal = false; // Controla la visibilidad del modal.
+
+  // Método para abrir el modal
+  openModal() {
+    this.showModal = true;
+  }
+
+  // Método para cerrar el modal
+  closeModal() {
+    this.showModal = false;
+  }
 }

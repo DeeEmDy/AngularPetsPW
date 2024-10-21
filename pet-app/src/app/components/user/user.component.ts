@@ -4,20 +4,22 @@ import { User } from '../../user';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule aquí
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { UserCreateModalComponent } from '../user-create-modal/user-create-modal.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule], // Añadido ReactiveFormsModule
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, UserCreateModalComponent],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrls: ['./user.component.css']
 })
 export class UserComponent {
   public users: Observable<User[]> | undefined;
   public userForm: FormGroup;
   public successMessage: string | null = null;
   public errorMessage: string | null = null;
+  public showModal: boolean = false; //Para controlar la visibilidad del modal.
 
   constructor(private readonly userService: UserService, private readonly fb: FormBuilder) {
     this.userForm = this.fb.group({
@@ -48,6 +50,7 @@ export class UserComponent {
           this.errorMessage = null;
           this.userForm.reset();
           this.users = this.userService.getUsers();
+          this.closeModal(); // Cerrar el modal después de la creación
         },
         error: (error) => {
           this.errorMessage = 'Hubo un error al crear el usuario';
@@ -55,5 +58,15 @@ export class UserComponent {
         }
       });
     }
+  }
+
+  // Método para abrir el modal
+  openModal(): void {
+    this.showModal = true;
+  }
+
+  // Método para cerrar el modal
+  closeModal(): void {
+    this.showModal = false;
   }
 }
