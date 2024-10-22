@@ -60,13 +60,13 @@ export class UserComponent implements OnInit {
         });
       },
       error: (error) => {
-        this.errorMessage = 'Hubo un error al crear el usuario';
         this.successMessage = null;
+        this.errorMessage = error.error?.message || 'Hubo un error al crear el usuario'; // Captura el mensaje del backend
 
         Swal.fire({
           icon: 'error',
           title: 'Error al crear usuario',
-          text: 'Hubo un error al crear el usuario. Inténtalo de nuevo.',
+          text: this.errorMessage ?? 'Ocurrió un error inesperado', // Proporciona un valor por defecto si es null o undefined
           confirmButtonText: 'Aceptar',
           timer: 5000, // Tiempo en milisegundos antes de cerrar automáticamente
           timerProgressBar: true,
@@ -74,6 +74,8 @@ export class UserComponent implements OnInit {
             this.errorMessage = null; // Limpiar el mensaje de error después de cerrar
           }
         });
+
+
       }
     });
   }
