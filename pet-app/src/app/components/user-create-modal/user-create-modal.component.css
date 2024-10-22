@@ -3,3 +3,17 @@
   justify-content: space-between; /* Alinear los botones a los extremos */
   align-items: center; /* Centrar verticalmente los botones */
 }
+
+.close.bg-gradient-danger {
+  background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important; /* Igualar color */
+  color: #fff; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 0.25rem 0.5rem; /* Ajustar padding para hacerlo más pequeño */
+  border-radius: 0.3rem; /* Ajustar el radio para hacerlo menos redondeado */
+  cursor: pointer; /* Cambiar cursor a pointer */
+}
+
+.btn.bg-gradient-danger {
+  background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important; /* Asegúrate de que el botón de cerrar también use el mismo color */
+  color: #fff; /* Color del texto igualado */
+}
